@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "../../src",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "../../dist",
+    "sourceMap": true,
+    "target": "es6"
+  },
+  "include": ["../../src/**/*.ts"],
+  "exclude": ["../../node_modules"]
+}
