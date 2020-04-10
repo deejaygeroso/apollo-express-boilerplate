@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     ports:
-      - "3000:3000"
+      - "8100:8100"
     restart: on-failure
     volumes:
       - /adally-server/node_modules

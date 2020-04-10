@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/psl": "^1.1.0",
     "apollo-server-express": "^2.12.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
@@ -39,6 +38,7 @@
     "@types/mongoose": "^5.7.9",
     "@types/node": "^13.11.1",
     "@types/node-fetch": "^2.5.4",
+    "@types/psl": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/eslint-plugin-tslint": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
