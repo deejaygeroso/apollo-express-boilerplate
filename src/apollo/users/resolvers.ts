@@ -9,12 +9,11 @@ const resolvers = {
         email,
         password,
         type,
-        websiteIds
       } = input
       const userModel = new User()
       const auth = new AuthService()
       const hashedPassword = await auth.hashPassword(password)
-      return userModel.createIfNotExist({ email, hashedPassword, type, websiteIds })
+      return userModel.createIfNotExist({ email, hashedPassword, type })
     },
     userLogin: async (parent: object, { input }: { input: IUserCreateInput }): Promise<IAuthenticatedUser> => {
       const {
@@ -26,7 +25,7 @@ const resolvers = {
 
       const user = await userModel.findByEmail(email)
 
-      if (user === null) {
+      if (!user) {
         return auth.generateEmptyAuth()
       }
       return auth.authenticate(user, password)
@@ -37,12 +36,11 @@ const resolvers = {
         email,
         password,
         type,
-        websiteIds
       } = input
       const userModel = new User()
       const auth = new AuthService()
       const hashedPassword = password ? await auth.hashPassword(password) : null
-      return userModel.updateUserById({ _id, email, hashedPassword, type, websiteIds })
+      return userModel.updateUserById({ _id, email, hashedPassword, type })
     },
   },
   Query: {

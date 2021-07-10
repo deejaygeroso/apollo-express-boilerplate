@@ -3,7 +3,6 @@ interface IUserUpdateInput {
   email: string
   hashedPassword: string
   type: string
-  websiteIds: string[]
 }
 
 export default IUserUpdateInput
