@@ -89,9 +89,9 @@ docker-compose up --build -d
 - `https://localhost:3000/api/sample`
   This is a sample api you could use to test if the project was setup correctly.
   Request:
-  ` body: {} method: GET `
+  `body: {} method: GET`
   Response:
-  ` value: "Hello World" `
+  `value: "Hello World"`
 
 ---
 
@@ -136,7 +136,6 @@ adally-server
             - schemas
         - services
             - AuthService.ts
-        - apiRoute.ts
         - server.ts
     - .dockerignore
     - .env
