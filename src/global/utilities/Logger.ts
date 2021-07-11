@@ -2,15 +2,18 @@ import debug from 'debug'
 
 class Logger {
 
-  // NOTE: Should only use for debugging.
+  // NOTE: debug method should only be used for debugging.
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public static debug = (input: any): void => {
     Logger.debugLogForDebugging(Logger.prettify(input))
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public static logInfo = (input: any): void => {
     Logger.debugInfo(Logger.prettify(input))
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public static logError = (input: any, title?: string): void => {
     if (Logger.checkIfErrorCodeProtocol(input)) {
       Logger.debugError(`${input.code}: ${input.message}`)

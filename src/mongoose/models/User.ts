@@ -9,6 +9,7 @@ import { User as UserSchema } from '../schemas'
 import mongoose from '../config/mongoose'
 import { userTypes } from '../../global/constants'
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const User = mongoose.model<IUser>('User', UserSchema)
 
 class UserModel extends ActiveRecord<IUser>  {

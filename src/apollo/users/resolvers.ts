@@ -25,10 +25,10 @@ const resolvers = {
       const auth = new AuthService()
 
       const user = await userModel.findByEmail(email)
-
       if (!user) {
         return auth.generateEmptyAuth()
       }
+
       return auth.authenticate(user, password)
     },
     userUpdate: async (parent: undefined, { input }: { input: IUserUpdateInput }): Promise<IUser> => {
