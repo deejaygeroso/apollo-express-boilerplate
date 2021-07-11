@@ -3,8 +3,8 @@ import {
   IActiveRecordMatchValues,
   IActiveRecordSearchFilter,
   IDynamicObject,
-  IModelOptions,
-  IModelOptionsInput,
+  IQueryOptions,
+  IQueryOptionsToBeUpdated,
   IReject,
   IResolve,
   ISingleDocModelOptions,
@@ -34,14 +34,14 @@ class ActiveRecord<TModel>{
 
   protected find = async (
     filter: mongoose.FilterQuery<TModel>,
-    options?: IModelOptionsInput
+    options?: IQueryOptionsToBeUpdated
   ): Promise<TModel[]> => {
     const {
       limit,
       select,
       skip,
       sort
-    }: IModelOptions = this.getValidQueryOptions(options)
+    }: IQueryOptions = this.getValidQueryOptions(options)
 
     return new Promise((resolve: IResolve<TModel[]>, reject: IReject): void => {
       this.model
@@ -76,12 +76,12 @@ class ActiveRecord<TModel>{
 
   protected findOne = async (
     filter: mongoose.FilterQuery<TModel>,
-    options?: IModelOptionsInput
+    options?: IQueryOptionsToBeUpdated
   ): Promise<TModel> => {
-    const queryOptions: IModelOptions = this.getValidQueryOptions(options)
+    const queryOptions: IQueryOptions = this.getValidQueryOptions(options)
     const {
       select,
-    }: IModelOptions = queryOptions
+    }: IQueryOptions = queryOptions
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
       this.model.findOne(filter)
         .select(select)
@@ -172,7 +172,7 @@ class ActiveRecord<TModel>{
     }
   }
 
-  private getValidQueryOptions = (options: IModelOptionsInput): IModelOptions => {
+  private getValidQueryOptions = (options: IQueryOptionsToBeUpdated): IQueryOptions => {
     if (!options) {
       return {}
     }

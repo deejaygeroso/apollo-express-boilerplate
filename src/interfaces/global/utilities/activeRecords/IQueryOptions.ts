@@ -1,10 +1,10 @@
 import IDynamicObject from '../IDynamicObject'
 
-interface IModelOptionsInput {
+interface IQueryOptions {
   limit?: number
-  select?: string[]
+  select?: IDynamicObject
   skip?: number
   sort?: IDynamicObject
 }
 
-export default IModelOptionsInput
+export default IQueryOptions

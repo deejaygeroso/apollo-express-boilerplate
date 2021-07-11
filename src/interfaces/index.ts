@@ -19,14 +19,15 @@ export { default as IUserUpdateInput } from './apollo/users/IUserUpdateInput'
 /* ----------------------------------------------------------------------------------
  * Global Directory Interfaces
 /* ---------------------------------------------------------------------------------- */
-export { default as IActiveRecordMatchValues } from './global/utilities/IActiveRecordMatchValues'
+// global > utilities > activeRecords
+export { default as IActiveRecordMatchValues } from './global/utilities/activeRecords/IActiveRecordMatchValues'
 export { default as IActiveRecordSearchFilter } from './global/utilities/IActiveRecordSearchFilter'
+export { default as IQueryOptions } from './global/utilities/activeRecords/IQueryOptions'
+export { default as IQueryOptionsToBeUpdated } from './global/utilities/activeRecords/IQueryOptionsToBeUpdated'
 
 /* ----------------------------------------------------------------------------------
  * Mongoose Model Interfaces
 /* ---------------------------------------------------------------------------------- */
-export { default as IModelOptions } from './models/IModelOptions'
-export { default as IModelOptionsInput } from './models/IModelOptionsInput'
 export { default as ISingleDocModelOptions } from './models/ISingleDocModelOptions'
 export { default as ISingleDocModelOptionsInput } from './models/ISingleDocModelOptionsInput'
 // model > users
