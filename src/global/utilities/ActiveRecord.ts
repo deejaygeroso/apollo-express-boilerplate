@@ -1,36 +1,39 @@
+
 import {
   IActiveRecordMatchValues,
   IActiveRecordSearchFilter,
   IDynamicObject,
   IModelOptions,
   IModelOptionsInput,
-  IMongooseError,
   IReject,
   IResolve,
   ISingleDocModelOptions,
-  ISingleDocModelOptionsInput
+  ISingleDocModelOptionsInput,
 } from '../../interfaces'
 import Logger from './Logger'
+import mongoose from '../../mongoose/config/mongoose'
 
-class ActiveRecord {
-  protected model: any
 
-  constructor(model: any) {
+class ActiveRecord<TModel>{
+  protected model: mongoose.Model<TModel>
+
+  constructor(model: mongoose.Model<TModel>) {
     this.model = model
   }
 
-  protected create = async <TModel, TFilter>(filter: TFilter): Promise<TModel> => {
+  protected create = async (filter: mongoose.FilterQuery<TModel>): Promise<TModel> => {
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
-      this.model.create(filter, (error: IMongooseError, result: TModel): void => {
-        const errorMessageHeader = 'create'
-        this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
-        resolve(result)
-      })
+      this.model.create(filter,
+        (error: mongoose.NativeError, doc: TModel): void => {
+          const errorMessageHeader = 'create'
+          this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
+          resolve(doc)
+        })
     })
   }
 
-  protected find = async <TModel, TFilter>(
-    filter: TFilter,
+  protected find = async (
+    filter: mongoose.FilterQuery<TModel>,
     options?: IModelOptionsInput
   ): Promise<TModel[]> => {
     const {
@@ -47,15 +50,15 @@ class ActiveRecord {
         .skip(skip)
         .limit(limit)
         .sort(sort)
-        .exec((error: IMongooseError, result: TModel[]): void => {
+        .exec((error: mongoose.NativeError, doc: TModel[]): void => {
           const errorMessageHeader = 'find'
           this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
-          resolve(result)
+          resolve(doc)
         })
     })
   }
 
-  protected findById = async <TModel>(
+  protected findById = async (
     modelId: string,
     options?: ISingleDocModelOptionsInput
   ): Promise<TModel> => {
@@ -63,16 +66,16 @@ class ActiveRecord {
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
       this.model.findById(modelId)
         .select(select)
-        .exec((error: IMongooseError, result: TModel): void => {
+        .exec((error: mongoose.NativeError, doc: TModel): void => {
           const errorMessageHeader = `findById with id: ${modelId}`
           this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
-          resolve(result)
+          resolve(doc)
         })
     })
   }
 
-  protected findOne = async <TModel, TFilter, TSelectedFields>(
-    filter: TFilter,
+  protected findOne = async (
+    filter: mongoose.FilterQuery<TModel>,
     options?: IModelOptionsInput
   ): Promise<TModel> => {
     const queryOptions: IModelOptions = this.getValidQueryOptions(options)
@@ -82,7 +85,7 @@ class ActiveRecord {
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
       this.model.findOne(filter)
         .select(select)
-        .exec((error: IMongooseError, result: TModel): void => {
+        .exec((error: mongoose.NativeError, result: TModel): void => {
           const errorMessageHeader = 'findOne'
           this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
           resolve(result)
@@ -90,49 +93,51 @@ class ActiveRecord {
     })
   }
 
-  protected updateById = <TModel, TFilter>(modelId: string, document: TFilter): Promise<TModel> => {
-    return this.update({ _id: modelId }, document)
+  protected updateById = (modelId: string, document: TModel): Promise<TModel> => {
+    return this.update(modelId, document)
   }
 
-  protected update = <TModel, TDocument, TFilter>(
-    filter: TFilter,
-    document: TDocument
+  protected update = (
+    modelId: string,
+    document: TModel,
   ): Promise<TModel> => {
+    // We purposely set the type definition of "conditions" variable to "any" to resolve conflict on method findOneAndUpdate.
+    // The method is expecting FilterQuery<TModel>. It is basically saying it wants the whole data from TModel, which is WRONG.
+    // We only need to pass one property, and that is "_id or the modelId" of the data that needs to be updated.
+    const conditions: any = { _id: modelId }
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
       this.model.findOneAndUpdate(
-        filter,
-        {
-          $set: document
-        },
+        conditions,
+        document,
         {
           new: true
         },
-        (error: IMongooseError, result: any): void => {
-          const errorMessageHeader = `update with filter: ${JSON.stringify(filter, null, 4)}`
+        (error: mongoose.NativeError, doc: TModel): void => {
+          const errorMessageHeader = `update with filter: ${JSON.stringify(modelId, null, 4)}`
           this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
-          resolve(result)
+          resolve(doc)
         }
       )
     })
   }
 
-  protected count = async <TFilter>(
-    filter: TFilter,
+  protected count = async (
+    filter: mongoose.FilterQuery<TModel>,
   ): Promise<number> => {
     return new Promise((resolve: IResolve<number>, reject: IReject): void => {
       this.model
         .countDocuments(filter || {})
-        .exec((countError: IMongooseError, count: number): void => {
-          if (countError) {
+        .exec((error: mongoose.NativeError, count: number): void => {
+          if (error) {
             const errorMessageHeader = 'count'
-            this.checkForErrorThenLogAndReject(countError, reject, errorMessageHeader)
+            this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
           }
           resolve(count)
         })
     })
   }
 
-  protected checkForErrorThenLogAndReject = (error: IMongooseError, reject: IReject, methodName: string): void => {
+  protected checkForErrorThenLogAndReject = (error: mongoose.NativeError, reject: IReject, methodName: string): void => {
     if (error) {
       Logger.logError(error, `Error on '${this.model.modelName}' class on method '${methodName}'`)
       reject(error)

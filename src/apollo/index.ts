@@ -4,7 +4,7 @@ import { Request } from 'express'
 import resolvers from './resolvers'
 import typeDefs from './typeDefs'
 
-const ApolloServerInit = new ApolloServer({
+const apolloServerInit = new ApolloServer({
   context: ({ req }: { req: Request }): any => {
     const token = req.headers.authorization || null
 
@@ -18,4 +18,4 @@ const ApolloServerInit = new ApolloServer({
   typeDefs,
 })
 
-export default ApolloServerInit
+export default apolloServerInit

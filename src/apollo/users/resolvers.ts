@@ -4,7 +4,7 @@ import User from '../../mongoose/models/User'
 
 const resolvers = {
   Mutation: {
-    userCreate: async (root: object, { input }: { input: IUserCreateInput }): Promise<IUser> => {
+    userCreate: async (parent: undefined, { input }: { input: IUserCreateInput }): Promise<IUser> => {
       const {
         email,
         password,
@@ -15,7 +15,7 @@ const resolvers = {
       const hashedPassword = await auth.hashPassword(password)
       return userModel.createIfNotExist({ email, hashedPassword, type })
     },
-    userLogin: async (parent: object, { input }: { input: IUserCreateInput }): Promise<IAuthenticatedUser> => {
+    userLogin: async (parent: undefined, { input }: { input: IUserCreateInput }): Promise<IAuthenticatedUser> => {
       const {
         email,
         password,
@@ -30,7 +30,7 @@ const resolvers = {
       }
       return auth.authenticate(user, password)
     },
-    userUpdate: async (root: object, { input }: { input: IUserUpdateInput }): Promise<IUser> => {
+    userUpdate: async (parent: undefined, { input }: { input: IUserUpdateInput }): Promise<IUser> => {
       const {
         _id,
         email,
@@ -44,7 +44,7 @@ const resolvers = {
     },
   },
   Query: {
-    user: async (parent: object, { _id }: { _id: string }): Promise<IUser> => {
+    user: async (parent: undefined, { _id }: { _id: string }): Promise<IUser> => {
       const userModel = new User()
       return userModel.findUserById(_id)
     },

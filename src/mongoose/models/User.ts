@@ -9,9 +9,9 @@ import { User as UserSchema } from '../schemas'
 import mongoose from '../config/mongoose'
 import { userTypes } from '../../global/constants'
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model<IUser>('User', UserSchema)
 
-class UserModel extends ActiveRecord {
+class UserModel extends ActiveRecord<IUser>  {
   constructor() {
     super(User)
   }
