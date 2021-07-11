@@ -1,4 +1,4 @@
-import IDynamicObject from '../IDynamicObject'
+import IDynamicObject from '../../../IDynamicObject'
 
 interface IQueryOptions {
   limit?: number
