@@ -1,4 +1,4 @@
-/* eslint-disable id-blacklist */
+/* eslint-disable @typescript-eslint/naming-convention */
 import mongoose from '../config/mongoose'
 
 const Schema = mongoose.Schema

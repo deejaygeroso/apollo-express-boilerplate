@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { IAuthenticatedUser, IUser, IUserCreateInput, IUserUpdateInput } from '../../interfaces'
 import { AuthService } from '../../services'
 import User from '../../mongoose/models/User'
