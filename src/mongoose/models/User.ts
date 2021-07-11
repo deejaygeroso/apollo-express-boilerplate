@@ -32,6 +32,9 @@ class UserModel extends ActiveRecord<IUser>  {
     return user
   }
 
+  // This will only find user with 'admin' or 'user' type but excludes all other user with different type.
+  // This was purposely created for me to create a superadmin type which cannot be queried back to the client.
+  // This is for personal preference only.
   public findAll = async (): Promise<IUser[]> => {
     return this.find(this.userTypeFilter, {
       sort: { createdAt: -1 }
