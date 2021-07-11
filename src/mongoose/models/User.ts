@@ -1,7 +1,7 @@
 import {
   IUser,
   IUserCreateInputPasswordHashed,
-  IUserTypeOption,
+  IUserTypeFilterQuery,
   IUserUpdateInputPasswordHashed
 } from '../../interfaces'
 import { ActiveRecord } from '../../global/utilities'
@@ -17,7 +17,7 @@ class UserModel extends ActiveRecord<IUser>  {
     super(User)
   }
 
-  private userTypeFilter: IUserTypeOption = {
+  private userTypeFilter: IUserTypeFilterQuery = {
     $or: [
       { type: userTypes.admin },
       { type: userTypes.user },
@@ -34,17 +34,6 @@ class UserModel extends ActiveRecord<IUser>  {
 
   public findAll = async (): Promise<IUser[]> => {
     return this.find(this.userTypeFilter, {
-      sort: { createdAt: -1 }
-    })
-  }
-
-  public findAllAdminsAndBusinessAccounts = async (): Promise<IUser[]> => {
-    const filterOption = {
-      $or: [
-        { type: userTypes.admin },
-      ],
-    }
-    return this.find(filterOption, {
       sort: { createdAt: -1 }
     })
   }

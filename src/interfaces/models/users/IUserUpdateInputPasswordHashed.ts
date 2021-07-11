@@ -1,8 +1,8 @@
-interface IUserUpdateInput {
+interface IUserUpdateInputPasswordHashed {
   _id: string
   email: string
   hashedPassword: string
   type: string
 }
 
-export default IUserUpdateInput
+export default IUserUpdateInputPasswordHashed

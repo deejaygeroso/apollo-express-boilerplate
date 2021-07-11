@@ -32,5 +32,6 @@ export { default as ISingleDocModelOptionsInput } from './models/ISingleDocModel
 // model > users
 export { default as IUser } from './models/users/IUser'
 export { default as IUserCreateInputPasswordHashed } from './models/users/IUserCreateInputPasswordHashed'
-export { default as IUserTypeOption } from './models/users/IUserTypeOption'
+export { default as IUserTypes } from './models/users/IUserTypes'
+export { default as IUserTypeFilterQuery } from './models/users/IUserTypeFilterQuery'
 export { default as IUserUpdateInputPasswordHashed } from './models/users/IUserUpdateInputPasswordHashed'
