@@ -93,18 +93,18 @@ class ActiveRecord<TModel>{
     })
   }
 
+  // We purposely set the type definition of "conditions" variable to "any" to resolve conflict on method findOneAndUpdate.
+  // The method is expecting FilterQuery<TModel>. It is basically saying it wants the whole data from TModel, which is WRONG.
+  // We only need to pass one property, and that is "_id or the modelId" of the data that needs to be updated.
   protected updateById = (modelId: string, document: TModel): Promise<TModel> => {
-    return this.update(modelId, document)
+    const condition: any = { _id: modelId }
+    return this.update(condition, document)
   }
 
   protected update = (
-    modelId: string,
+    conditions: mongoose.FilterQuery<TModel>,
     document: TModel,
   ): Promise<TModel> => {
-    // We purposely set the type definition of "conditions" variable to "any" to resolve conflict on method findOneAndUpdate.
-    // The method is expecting FilterQuery<TModel>. It is basically saying it wants the whole data from TModel, which is WRONG.
-    // We only need to pass one property, and that is "_id or the modelId" of the data that needs to be updated.
-    const conditions: any = { _id: modelId }
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
       this.model.findOneAndUpdate(
         conditions,
@@ -113,7 +113,7 @@ class ActiveRecord<TModel>{
           new: true
         },
         (error: mongoose.NativeError, doc: TModel): void => {
-          const errorMessageHeader = `update with filter: ${JSON.stringify(modelId, null, 4)}`
+          const errorMessageHeader = `update with filter: ${JSON.stringify(conditions, null, 4)}`
           this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
           resolve(doc)
         }

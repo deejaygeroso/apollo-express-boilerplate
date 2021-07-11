@@ -50,10 +50,13 @@ class UserModel extends ActiveRecord<IUser>  {
     return this.findOne({ email })
   }
 
+  // Update user information, but hashedPassword is optional.
   public updateUserById = async (userInput: IUserUpdateInputPasswordHashed): Promise<IUser> => {
     const { _id, email, hashedPassword, type } = userInput
     const userOption = Object.assign({ _id }, this.userTypeFilter)
-    const dataToUpdate = !!hashedPassword ? {
+
+    // We used any as the type for dataToUpdate instead of IUser since we are making hashedPassword to be updated optionally.
+    const dataToUpdate: any = !!hashedPassword ? {
       _id,
       email,
       hashedPassword,
@@ -63,10 +66,7 @@ class UserModel extends ActiveRecord<IUser>  {
       email,
       type,
     }
-    const document: any = await User.findOneAndUpdate(userOption, {
-      $set: dataToUpdate
-    })
-    return document
+    return this.update(userOption, dataToUpdate)
   }
 
   private createNewUser = async (userInput: IUserCreateInputPasswordHashed): Promise<IUser> => {
