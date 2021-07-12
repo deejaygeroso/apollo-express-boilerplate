@@ -6,7 +6,6 @@ import { handleAppError, logApiRequests } from './global/functions'
 import { Logger } from './global/utilities'
 import apiRoute from './api'
 import apollo from './apollo'
-import bodyParser from 'body-parser'
 import cors from 'cors'
 import path from 'path'
 import { express as voyagerMiddleware } from 'graphql-voyager/middleware'
@@ -24,23 +23,24 @@ class Server {
   }
 
   private middleware = (): void => {
-    this.app.use(bodyParser.urlencoded({
-      extended: true,
-      limit: '50mb'
-    }))
-    this.app.use(bodyParser.json({
-      limit: '50mb'
-    }))
+    // The extended option allows to choose between parsing the URL-encoded
+    // data with the querystring library (when false) or the qs library (when true)
+    // https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
+    this.app.use(express.json({ limit: '50mb' }))
+    this.app.use(express.urlencoded({ extended: true, limit: '50mb' }))
+
     this.app.use(cors({
       credentials: true,
       origin: true,
     }))
+
     this.app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }))
     this.server.applyMiddleware({
       app: this.app,
       cors: false,
       path: '/graphql',
     })
+
     this.app.use(logApiRequests()) // Must be invoked after bodyParser.
   }
 
