@@ -25,7 +25,7 @@ If you want to run Docker, then I suggest using:
 
 since these are what I'm using to run the application.
 
-#### Step 1. Clone the appication
+#### Step 1. Clone the application
 
 ```
 git clone https://github.com/deejaygeroso/apollo-express-boilerplate.git
@@ -43,17 +43,18 @@ cd ./config/docker/
 docker-compose -f docker-compose-mongo.yml  up -d
 ```
 
-#### Step 3. Create environment virables
+#### Step 3. Create environment variables
 
 `NOTE:` Before running the application, environment variables must be defined.
 `Instruction:` Create a file `.env` inside your project directory, then add the variables with its corresponding values indicated in the table below.
 
-| Variables   | Definition                                                     | Example Values |
-| :---------- | :------------------------------------------------------------- | :------------- |
-| AUTH_SECRET | Allows secure communication between GraphQL client and server. | <Secret Key>   |
-| ENV         | Defines the environment the app will be running on.            | prod           |
-| DEBUG       | Used in logging info to the console.                           | app:\*         |
-| PORT        | The port where the app will run.                               | 3000           |
+| Variables   | Definition                                                                               | Example Values                             |
+| :---------- | :--------------------------------------------------------------------------------------- | :----------------------------------------- |
+| AUTH_SECRET | Allows secure communication between GraphQL client and server.                           | <Secret Key>                               |
+| ENV         | Defines the environment the app will be running on.                                      | prod                                       |
+| DEBUG       | Used in logging info to the console.                                                     | app:\*                                     |
+| PORT        | The port where the app will run.                                                         | 3000                                       |
+| MONGO_URL   | MongoDB url. Set value to `mongodb://localhost:27017/server-app`, when not using docker. | MONGO_URL=mongodb://mongo:27017/server-app |
 
 #### Step 4. Run Application
 
@@ -80,6 +81,9 @@ This will automatically run and deploy your app in a docker container.
 `NOTE:` Make sure you have no running mongo on your docker container.
 If you did step two then you should stop that container using `docker stop <container-id>`.
 Use `docker ps` to view running containers and get the id of the container you want to stop.
+
+`IMPORTANT:` Update your mongo url in `.env` and change it to `MONGO_URL=mongodb://mongo:27017`.
+This will allow your application container to connect to your mongo container.
 
 ```
 docker-compose up --build -d

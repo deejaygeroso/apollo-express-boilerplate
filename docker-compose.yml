@@ -21,3 +21,5 @@ services:
     ports:
       - "27017:27017"
     restart: on-failure
+    volumes:
+      - /home/deejay/mongodb/database:/data/db

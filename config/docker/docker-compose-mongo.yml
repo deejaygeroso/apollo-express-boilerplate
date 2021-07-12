@@ -11,7 +11,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /home/barry/mongodb/database:/data/db
+      - /home/deejay/mongodb/database:/data/db
     ports:
       - 27017:27017
     restart: unless-stopped
