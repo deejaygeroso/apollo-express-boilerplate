@@ -1,21 +1,24 @@
 FROM node:alpine
 
-RUN apk --no-cache add --virtual native-deps \
-  g++ gcc libgcc libstdc++ linux-headers autoconf automake make nasm python git && \
-  npm install --quiet node-gyp -g
-
+# Create app directory
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-RUN npm install
-
+# Move tsconfig file to container.
 RUN mkdir config
 RUN mkdir config/typescript
 COPY ./config/typescript/tsconfig.json ./config/typescript/tsconfig.json
 
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+RUN npm install
+
+# Bundle app source
 COPY . .
 
+# If you are building your code for production
+# RUN npm ci --only=production
 RUN npm run build
-COPY ./config/scripts/prod/. ./dist/scripts/.
 
 CMD ["npm", "run", "start"]

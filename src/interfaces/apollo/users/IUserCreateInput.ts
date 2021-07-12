@@ -1,8 +1,9 @@
+import { IUserTypes } from '../..'
+
 interface IUserCreateInput {
   email: string
   password: string
-  type: string
-  websiteIds: string[]
+  type: IUserTypes
 }
 
 export default IUserCreateInput

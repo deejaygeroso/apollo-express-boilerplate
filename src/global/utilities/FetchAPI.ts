@@ -15,6 +15,7 @@ class FetchAPI {
     return new Promise((resolve: IResolve<TReturnValue>, reject: IReject): void => {
       const url = `${this.apiURL}${apiRoute}`
       nodeFetch(url, {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         headers: { 'Content-Type': 'application/json' },
         method: 'get',
       })
@@ -22,7 +23,7 @@ class FetchAPI {
         .then((json: TReturnValue): void => {
           resolve(json)
         })
-        .catch((error: object): void => {
+        .catch((error: any): void => {
           Logger.logError(error, `Error ${FetchAPI.name} class`)
           reject(error)
         })
@@ -37,6 +38,7 @@ class FetchAPI {
       const url = `${this.apiURL}${apiRoute}`
       nodeFetch(url, {
         body: JSON.stringify(param),
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         headers: { 'Content-Type': 'application/json' },
         method: 'post',
       })
@@ -44,7 +46,7 @@ class FetchAPI {
         .then((json: TReturnValue): void => {
           resolve(json)
         })
-        .catch((error: object): void => {
+        .catch((error: any): void => {
           Logger.logError(error, `Error ${FetchAPI.name} class`)
           reject(error)
         })

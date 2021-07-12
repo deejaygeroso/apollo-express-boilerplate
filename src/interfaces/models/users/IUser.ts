@@ -1,10 +1,10 @@
-interface IUser {
+import { Document } from 'mongoose'
+
+interface IUser extends Document {
   _id: string
-  auditedWebsiteIds: string[]
   email: string
   hashedPassword: string
   type: string
-  websiteIds: string[]
 }
 
 export default IUser

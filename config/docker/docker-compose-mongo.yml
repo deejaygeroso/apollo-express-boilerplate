@@ -1,0 +1,17 @@
+# You can use this when you want to run mongo locally on your machine
+# You must first run this command:
+#   docker pull mongo
+#   docker-compose -f docker-compose-mongo.yml  up -d
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/deejay/mongodb/database:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped

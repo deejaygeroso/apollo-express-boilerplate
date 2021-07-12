@@ -10,14 +10,16 @@ services:
     env_file:
       - .env
     ports:
-      - "8100:8100"
+      - "${PORT}:${PORT}"
     restart: on-failure
     volumes:
-      - /adally-server/node_modules
-      - .:/adally-server
+      - /app-server/node_modules
+      - .:/app-server
   mongo:
     container_name: server-mongo
     image: mongo
     ports:
       - "27017:27017"
     restart: on-failure
+    volumes:
+      - /home/deejay/mongodb/database:/data/db

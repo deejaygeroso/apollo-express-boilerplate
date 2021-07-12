@@ -2,34 +2,33 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
   },
-  extends: ["plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
+  extends: ["plugin:@typescript-eslint/recommended"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "./config/typescript/tsconfig.json",
-    sourceType: "module"
+    sourceType: "module",
   },
   plugins: ["@typescript-eslint", "@typescript-eslint/tslint"],
   rules: {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/ban-types": "error",
-    "@typescript-eslint/class-name-casing": "error",
+    "@typescript-eslint/naming-convention": "error",
     "@typescript-eslint/consistent-type-assertions": "error",
-    "@typescript-eslint/interface-name-prefix": 0,
     "@typescript-eslint/member-delimiter-style": [
       "error",
       {
         multiline: {
           delimiter: "none",
-          requireLast: true
+          requireLast: true,
         },
         singleline: {
           delimiter: "semi",
-          requireLast: false
-        }
-      }
+          requireLast: false,
+        },
+      },
     ],
     "@typescript-eslint/no-empty-function": "error",
     "@typescript-eslint/no-empty-interface": "error",
@@ -53,14 +52,25 @@ module.exports = {
     "dot-notation": "error",
     eqeqeq: ["error", "smart"],
     "guard-for-in": "error",
-    "id-blacklist": ["error", "any", "Number", "number", "String", "string", "Boolean", "boolean", "Undefined", "undefined"],
+    "id-blacklist": [
+      "error",
+      "any",
+      "Number",
+      "number",
+      "String",
+      "string",
+      "Boolean",
+      "boolean",
+      "Undefined",
+      "undefined",
+    ],
     "id-match": "error",
     "max-classes-per-file": ["error", 1],
     "max-len": [
       "error",
       {
-        code: 140
-      }
+        code: 140,
+      },
     ],
     "new-parens": "error",
     "no-bitwise": "error",
@@ -76,8 +86,8 @@ module.exports = {
     "no-shadow": [
       "error",
       {
-        hoist: "all"
-      }
+        hoist: "all",
+      },
     ],
     "no-throw-literal": "error",
     "no-trailing-spaces": "error",
@@ -96,8 +106,8 @@ module.exports = {
         ignoreCase: false,
         ignoreDeclarationSort: false,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ["none", "all", "multiple", "single"]
-      }
+        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+      },
     ],
     "spaced-comment": "error",
     "use-isnan": "error",
@@ -107,9 +117,9 @@ module.exports = {
       {
         rules: {
           "jsdoc-format": true,
-          "no-reference-import": true
-        }
-      }
-    ]
-  }
-}
+          "no-reference-import": true,
+        },
+      },
+    ],
+  },
+};

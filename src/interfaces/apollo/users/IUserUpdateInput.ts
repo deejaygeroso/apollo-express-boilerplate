@@ -1,9 +1,10 @@
+import { IUserTypes } from '../..'
+
 interface IUserUpdateInput {
   _id: string
   email: string
-  hashedPassword: string
-  type: string
-  websiteIds: string[]
+  password: string
+  type: IUserTypes
 }
 
 export default IUserUpdateInput

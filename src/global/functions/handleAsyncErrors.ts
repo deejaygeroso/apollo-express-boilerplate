@@ -6,7 +6,7 @@ const handleAsyncErrors = (fn: express.Handler): express.Handler => {
     res: express.Response,
     next: express.NextFunction
   ): void => {
-    fn(req, res, next).catch(next)
+    fn(req, res, next)
   }
 }
 

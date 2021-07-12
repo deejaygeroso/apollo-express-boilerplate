@@ -9,7 +9,7 @@ const typeDef = gql`
     updatedAt: String
   }
 
-  type Auth {
+  type LoginInfo {
     _id: ID
     email: String
     expiration: String
@@ -24,11 +24,11 @@ const typeDef = gql`
 
   extend type Mutation {
     userCreate(input: UserCreateInput): User!
-    userLogin(input: UserAuthInput): Auth!
+    userLogin(input: UserLoginInput): LoginInfo!
     userUpdate(input: UserUpdateInput): User!
   }
 
-  input UserAuthInput {
+  input UserLoginInput {
     email: String!
     password: String!
   }
