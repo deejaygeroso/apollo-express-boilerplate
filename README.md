@@ -17,8 +17,8 @@ Apollo Graphql on Express application setup that uses mongo as its database.
 
 ## Installation
 
-`NOTE:` You need to have a `MongoDB running` to be able to run the application.
-If you want to run Docker, then I suggest using:
+`NOTE:` You need to have a `MongoDB running` to be able to run the application.  
+If you want to run Docker, then I suggest using:  
 
 - `Docker version 20.10.7`
 - `docker-compose version 1.29.2`
@@ -33,9 +33,9 @@ git clone https://github.com/deejaygeroso/apollo-express-boilerplate.git
 
 #### Step 2 (Optional). Install MongoDB using Docker
 
-Install `mongodb` using docker.
-Then go to `config/docker` directory which contains a `docker-compose-mongo.yml` file for running MongoDB on your local machine.
-Then run docker-compose command.
+Install `mongodb` using docker.  
+Then go to `config/docker` directory which contains a `docker-compose-mongo.yml` file for running MongoDB on your local machine.  
+Then run docker-compose command.  
 
 ```
 docker pull mongo
@@ -45,8 +45,8 @@ docker-compose -f docker-compose-mongo.yml  up -d
 
 #### Step 3. Create environment variables
 
-`NOTE:` Before running the application, environment variables must be defined.
-`Instruction:` Create a file `.env` inside your project directory, then add the variables with its corresponding values indicated in the table below.
+`NOTE:` Before running the application, environment variables must be defined.  
+`Instruction:` Create a file `.env` inside your project directory, then add the variables with its corresponding values indicated in the table below.  
 
 | Variables   | Definition                                                                  | Example Values                   |
 | :---------- | :-------------------------------------------------------------------------- | :------------------------------- |
@@ -60,15 +60,15 @@ docker-compose -f docker-compose-mongo.yml  up -d
 
 ##### Running application without using Docker Compose
 
-`NOTE:` Make sure `.env` is setup correctly.
-Also make sure a running `MongoDB` is running in your system.
-Then run application with this command:
+`NOTE:` Make sure `.env` is setup correctly.  
+Also make sure a running `MongoDB` is running in your system.  
+Then run application with this command:  
 
 ```
 npm run dev
 ```
 
-If you want to build the app for production use then run these commands:
+If you want to build the app for production use then run these commands:  
 
 ```
 npm run build
@@ -77,13 +77,13 @@ npm run start
 
 ##### Running application using Docker Compose
 
-This will automatically run and deploy your app in a docker container.
-`NOTE:` Make sure you have no running mongo on your docker container.
-If you did step two then you should stop that container using `docker stop <container-id>`.
-Use `docker ps` to view running containers and get the id of the container you want to stop.
+This will automatically run and deploy your app in a docker container.  
+`NOTE:` Make sure you have no running mongo on your docker container.  
+If you did step two then you should stop that container using `docker stop <container-id>`.  
+Use `docker ps` to view running containers and get the id of the container you want to stop.  
 
-`IMPORTANT:` Update your mongo url in `.env` and change it to `MONGO_URL=mongodb://mongo:27017`.
-This will allow your application container to connect to your mongo container.
+`IMPORTANT:` Update your mongo url in `.env` and change it to `MONGO_URL=mongodb://mongo:27017`.  
+This will allow your application container to connect to your mongo container.  
 
 ```
 docker-compose up --build -d
@@ -208,7 +208,7 @@ Files that prettier will ignore.
 
 ##### .prettierrc
 
-Prettier configuration.
+Prettier configuration.  
 It was intentinally placed here instead under config directory since `VSCode` is configured to find prettier configuration on the project root directory.
 
 ##### docker-compose.dev.yml
@@ -221,7 +221,7 @@ Docker configuratoin to run application. Used in production application.
 
 ##### package.json
 
-Holds various metadata relevant to the project.
+Holds various metadata relevant to the project.  
 This file is used to give information to npm that allows it to identify the project as well as handle the project's dependencies.
 
 ##### README.md
@@ -234,5 +234,5 @@ Release information about the project.
 
 ##### robots.txt
 
-Also known as the robots exclusion protocol or simply robots.txt,
+Also known as the robots exclusion protocol or simply robots.txt,  
 is a standard used by websites to communicate with web crawlers and other web robots.
