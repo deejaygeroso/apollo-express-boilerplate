@@ -81,8 +81,6 @@ This will automatically run and deploy your app in a docker container.
 If you did step two then you should stop that container using `docker stop <container-id>`.
 Use `docker ps` to view running containers and get the id of the container you want to stop.
 
-`IMPORTANT:` Also, make sure the port of your `.env` file matches the port used in `docker-compose.yml` file.
-
 ```
 docker-compose up --build -d
 ```
