@@ -12,8 +12,7 @@ mongoose.connect(process.env.MONGO_URL, {
 const db = mongoose.connection
 
 db.on('error', (error: IError): void => {
-  Logger.logError('Database connection error!')
-  Logger.logError(error)
+  Logger.logError(error, 'Database connection error!')
 })
 
 db.once('open', (): void => {

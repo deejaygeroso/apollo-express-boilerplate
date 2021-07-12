@@ -14,6 +14,9 @@ import Logger from './Logger'
 import mongoose from '../../mongoose/config/mongoose'
 
 
+/* ----------------------------------------------------------------------------------
+ * ActiveRecord class version 1.1.0
+/* ---------------------------------------------------------------------------------- */
 class ActiveRecord<TModel>{
   protected model: mongoose.Model<TModel>
 

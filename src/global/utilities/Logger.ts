@@ -1,29 +1,37 @@
+import { IError } from '../../interfaces'
 import debug from 'debug'
 
+/* ----------------------------------------------------------------------------------
+ * Logger class version 1.0.0
+/* ---------------------------------------------------------------------------------- */
 class Logger {
-
   // NOTE: debug method should only be used for debugging.
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public static debug = (input: any): void => {
+  public static debug = (input: any, title?: string): void => {
+    Logger.debugLogForDebugging('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    Logger.debugLogForDebugging(title)
     Logger.debugLogForDebugging(Logger.prettify(input))
+    Logger.debugLogForDebugging('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public static logInfo = (input: any): void => {
+  public static logInfo = (input: string): void => {
     Logger.debugInfo(Logger.prettify(input))
   }
 
+  // Could expect IError, which is a built in error protocol for the application.
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public static logError = (input: any, title?: string): void => {
-    if (Logger.checkIfErrorCodeProtocol(input)) {
-      Logger.debugError(`${input.code}: ${input.message}`)
-    }
-
+  public static logError = (input: IError | any, title?: string): void => {
     Logger.debugError('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
     if (title) {
       Logger.debugError(title)
     }
-    Logger.debugError(Logger.prettify(input))
+
+    if (Logger.checkIfErrorCodeProtocol(input)) {
+      Logger.debugError(`${input.code}: ${input.message}`)
+    } else {
+      Logger.debugError(Logger.prettify(input))
+    }
+
     Logger.debugError('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n')
   }
 
