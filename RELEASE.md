@@ -11,3 +11,4 @@
 - Removed body-parser package since its deprecated and already built in to express v4.
 - Removed unused timeZone global variable.
 - Removed unused codes.
+- Removed gitlab-ci.yml.
