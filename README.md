@@ -48,13 +48,13 @@ docker-compose -f docker-compose-mongo.yml  up -d
 `NOTE:` Before running the application, environment variables must be defined.
 `Instruction:` Create a file `.env` inside your project directory, then add the variables with its corresponding values indicated in the table below.
 
-| Variables   | Definition                                                                               | Example Values                             |
-| :---------- | :--------------------------------------------------------------------------------------- | :----------------------------------------- |
-| AUTH_SECRET | Allows secure communication between GraphQL client and server.                           | <Secret Key>                               |
-| ENV         | Defines the environment the app will be running on.                                      | prod                                       |
-| DEBUG       | Used in logging info to the console.                                                     | app:\*                                     |
-| PORT        | The port where the app will run.                                                         | 3000                                       |
-| MONGO_URL   | MongoDB url. Set value to `mongodb://localhost:27017/server-app`, when not using docker. | MONGO_URL=mongodb://mongo:27017/server-app |
+| Variables   | Definition                                                                  | Example Values                   |
+| :---------- | :-------------------------------------------------------------------------- | :------------------------------- |
+| AUTH_SECRET | Allows secure communication between GraphQL client and server.              | <Secret Key>                     |
+| ENV         | Defines the environment the app will be running on.                         | prod                             |
+| DEBUG       | Used in logging info to the console.                                        | app:\*                           |
+| PORT        | The port where the app will run.                                            | 3000                             |
+| MONGO_URL   | Set value to `mongodb://localhost:27017/server-app`, when not using docker. | mongodb://mongo:27017/server-app |
 
 #### Step 4. Run Application
 

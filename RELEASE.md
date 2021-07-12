@@ -1,4 +1,4 @@
-# 1.7.0 (July 2021)
+### v1.7.0 (July 2021)
 
 - Added readme and release documentation.
 - Added processENV global variable. This will let us identify what processENV is used in our application.
@@ -16,3 +16,7 @@
 - Removed unused codes.
 - Removed gitlab-ci.yml.
 - Removed pageSourceTracker from config/scripts/ directory.
+
+### v1.6.0 (June 2020)
+
+- Copied application architecture from my adally-server project.
