@@ -22,7 +22,7 @@ export { default as IUserUpdateInput } from './apollo/users/IUserUpdateInput'
 export { default as IExpressHook } from './global/functions/IExpressHook'
 // global > utilities > activeRecords
 export { default as IActiveRecordMatchValues } from './global/utilities/activeRecords/IActiveRecordMatchValues'
-export { default as IActiveRecordSearchFilter } from './global/utilities/IActiveRecordSearchFilter'
+export { default as IActiveRecordSearchFilter } from './global/utilities/activeRecords/IActiveRecordSearchFilter'
 export { default as IQueryOptions } from './global/utilities/activeRecords/IQueryOptions'
 export { default as IQueryOptionsToBeUpdated } from './global/utilities/activeRecords/IQueryOptionsToBeUpdated'
 

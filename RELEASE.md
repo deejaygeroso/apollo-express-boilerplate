@@ -9,6 +9,8 @@
 - Updated type definitions on interfaces directory.
 - Updated ActiveRecord Class to v1.1.0.
 - Updated Logger Class to v1.0.0.
+- Updated mongoose to v5.13.2.
+- Updated @types/node: 15.14.1 (Downgrade from 16.3.1) since mongoose is dependent on v15.
 - Removed body-parser package since its deprecated and already built in to express v4.
 - Removed unused timeZone global variable.
 - Removed unused codes.
