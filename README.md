@@ -98,7 +98,8 @@ docker-compose up --build -d
   Request:  
   ```
   {
-    body: {} method: GET
+    body: {},
+    method: GET
   }
   ```
   Response:  
