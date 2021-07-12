@@ -13,3 +13,4 @@
 - Removed unused timeZone global variable.
 - Removed unused codes.
 - Removed gitlab-ci.yml.
+- Removed pageSourceTracker from config/scripts/ directory.
