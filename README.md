@@ -97,11 +97,15 @@ docker-compose up --build -d
   This is a sample api you could use to test if the project was setup correctly.  
   Request:  
   ```
+  {
     body: {} method: GET
+  }
   ```
   Response:  
   ```
+  {
     value: "Hello World"
+  }
   ```
 
 ---
