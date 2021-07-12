@@ -96,15 +96,19 @@ docker-compose up --build -d
 - `https://localhost:3000/api/sample`
   This is a sample api you could use to test if the project was setup correctly.
   Request:
-  `body: {} method: GET`
+  ```
+    body: {} method: GET
+  ```
   Response:
-  `value: "Hello World"`
+  ```
+    value: "Hello World"
+  ```
 
 ---
 
 ## Graphql Playground
 
-- `https://localhost:3000/graphql`
+- `https://localhost:3000/graphql`  
   You can get more information for graphql playground [here](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/)
 
 ---
