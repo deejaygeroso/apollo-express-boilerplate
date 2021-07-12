@@ -93,13 +93,13 @@ docker-compose up --build -d
 
 ## API Routes
 
-- `https://localhost:3000/api/sample`
-  This is a sample api you could use to test if the project was setup correctly.
-  Request:
+- `https://localhost:3000/api/sample`  
+  This is a sample api you could use to test if the project was setup correctly.  
+  Request:  
   ```
     body: {} method: GET
   ```
-  Response:
+  Response:  
   ```
     value: "Hello World"
   ```
