@@ -2,6 +2,7 @@
 
 - Added readme and release documentation.
 - Added processENV global variable. This will let us identify what processENV is used in our application.
+- Added mongooseCollections global variable.
 - Updated user queries, mutations and type definitions.
 - Updated all packages to its latest versions. Nothing was broken upon the upgrade.
 - Updated some deprecated typescript-eslint rules in eslint config.

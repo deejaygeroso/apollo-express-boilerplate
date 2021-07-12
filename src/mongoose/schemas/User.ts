@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { IUser } from '../../interfaces'
 import mongoose from '../config/mongoose'
+import { mongooseCollections } from '../../global/constants'
 
 const Schema = mongoose.Schema
 
@@ -9,7 +10,7 @@ const User = new Schema<IUser>({
   hashedPassword: { type: String, required: true },
   type: { type: String, required: true },
 }, {
-  collection: 'users',
+  collection: mongooseCollections.users,
   timestamps: true
 })
 
