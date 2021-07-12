@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 
+# Move tsconfig file to container.
 RUN mkdir config
 RUN mkdir config/typescript
 COPY ./config/typescript/tsconfig.json ./config/typescript/tsconfig.json
@@ -16,6 +17,5 @@ COPY ./config/typescript/tsconfig.json ./config/typescript/tsconfig.json
 COPY . .
 
 RUN npm run build
-COPY ./config/scripts/prod/. ./dist/scripts/.
 
 CMD ["npm", "run", "start"]
