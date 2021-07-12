@@ -8,11 +8,12 @@ import apiRoute from './api'
 import apollo from './apollo'
 import cors from 'cors'
 import path from 'path'
+import { processENV } from './global/constants'
 import { express as voyagerMiddleware } from 'graphql-voyager/middleware'
 
 class Server {
   public app = express()
-  private port = process.env.PORT
+  private port = processENV.port
   private server = apollo
 
   constructor() {

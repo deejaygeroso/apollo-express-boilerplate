@@ -1,6 +1,7 @@
 import { ApolloServer } from 'apollo-server-express'
 import { AuthService } from '../services'
 import { Request } from 'express'
+import { processENV } from '../global/constants'
 import resolvers from './resolvers'
 import typeDefs from './typeDefs'
 
@@ -13,7 +14,7 @@ const apolloServerInit = new ApolloServer({
 
     return { auth }
   },
-  playground: process.env.ENV !== 'production', // Should be renamed to prod to disable @ production.
+  playground: processENV.env !== 'production', // Should be renamed to prod to disable @ production.
   resolvers,
   typeDefs,
 })

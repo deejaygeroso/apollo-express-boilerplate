@@ -2,10 +2,11 @@ import { IAuthenticatedUser, IUser } from '../interfaces'
 import { Logger } from '../global/utilities'
 import bcrypt from 'bcrypt'
 import jsonwebtoken from 'jsonwebtoken'
+import { processENV } from '../global/constants'
 
 class AuthService {
   private readonly saltRounds: number = 10
-  private readonly authSecret: jsonwebtoken.Secret = process.env.AUTH_SECRET
+  private readonly authSecret: jsonwebtoken.Secret = processENV.authSecret
   private readonly tokenExpiration: string = '24h'
 
   public authenticate = async (user: IUser, passwordToCompare: string): Promise<IAuthenticatedUser> => {
