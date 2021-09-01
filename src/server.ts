@@ -2,11 +2,11 @@
 require('dotenv').config()
 
 import express, { Request, Response } from 'express'
-import { handleAppError, logApiRequests } from './global/functions'
 import { Logger } from './global/utilities'
 import apiRoute from './api'
 import apollo from './apollo'
 import cors from 'cors'
+import { logApiRequests } from './global/functions'
 import path from 'path'
 import { processENV } from './global/constants'
 import { express as voyagerMiddleware } from 'graphql-voyager/middleware'
@@ -27,7 +27,6 @@ class Server {
     this.middleware()
     this.app.use(logApiRequests()) // Must be invoked after bodyParser config and before initializing api routes.
     this.initRoutes()
-    handleAppError(this.app) // Must be invoked after initRoutes()
     this.listen()
   }
 
