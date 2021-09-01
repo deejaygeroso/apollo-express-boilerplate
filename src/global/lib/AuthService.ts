@@ -1,8 +1,8 @@
-import { IAuthenticatedUser, IUser } from '../interfaces'
-import { Logger } from '../global/utilities'
+import { IAuthenticatedUser, IUser } from '../../interfaces'
+import { Logger } from '.'
 import bcrypt from 'bcrypt'
 import jsonwebtoken from 'jsonwebtoken'
-import { processENV } from '../global/constants'
+import { processENV } from '../constants'
 
 class AuthService {
   private readonly saltRounds: number = 10
@@ -23,10 +23,7 @@ class AuthService {
         return null
       }
 
-      const decodedAuthToken: string | jsonwebtoken.JwtPayload = jsonwebtoken.verify(
-        token,
-        this.authSecret,
-      )
+      const decodedAuthToken: string | jsonwebtoken.JwtPayload = jsonwebtoken.verify(token, this.authSecret)
 
       if (!decodedAuthToken) {
         return null
@@ -63,7 +60,7 @@ class AuthService {
       _id: user._id,
       email: user.email,
       expiration: this.getExpiration(),
-      type: user.type
+      type: user.type,
     }
     authObject.token = this.generateAuthToken(authObject)
     return authObject
@@ -75,11 +72,7 @@ class AuthService {
   }
 
   private generateAuthToken = (authObject: IAuthenticatedUser): string => {
-    return jsonwebtoken.sign(
-      authObject,
-      this.authSecret,
-      { expiresIn: this.tokenExpiration }
-    )
+    return jsonwebtoken.sign(authObject, this.authSecret, { expiresIn: this.tokenExpiration })
   }
 }
 

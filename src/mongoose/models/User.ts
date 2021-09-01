@@ -4,7 +4,7 @@ import {
   IUserTypeFilterQuery,
   IUserUpdateInputPasswordHashed,
 } from '../../interfaces'
-import { ActiveRecord } from '../../global/utilities'
+import { ActiveRecord } from '../../global/lib'
 import { User as UserSchema } from '../schemas'
 import mongoose from 'mongoose'
 import { userTypes } from '../../global/constants'

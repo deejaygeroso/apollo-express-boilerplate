@@ -2,7 +2,7 @@
 require('dotenv').config()
 
 import express, { Request, Response } from 'express'
-import { Logger } from './global/utilities'
+import { Logger } from './global/lib'
 import apiRoute from './api'
 import apollo from './apollo'
 import cors from 'cors'

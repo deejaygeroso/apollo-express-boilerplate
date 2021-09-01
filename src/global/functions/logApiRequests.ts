@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { IExpressHook } from '../../interfaces'
-import { Logger } from '../utilities'
+import { Logger } from '../lib'
 
 /* ----------------------------------------------------------------------------------
  * This will log all api request to the terminal.
