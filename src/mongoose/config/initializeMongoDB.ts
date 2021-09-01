@@ -1,5 +1,5 @@
 import { IError } from '../../interfaces'
-import { Logger } from '../../global/utilities'
+import { Logger } from '../../global/lib'
 import mongoose from 'mongoose'
 
 const initializeMongoDB = (mongoURL: string, cb: () => void): void => {
