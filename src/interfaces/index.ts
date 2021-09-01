@@ -20,11 +20,11 @@ export { default as IUserUpdateInput } from './apollo/users/IUserUpdateInput'
 /* ---------------------------------------------------------------------------------- */
 // global > functions
 export { default as IExpressHook } from './global/functions/IExpressHook'
-// global > utilities > activeRecords
-export { default as IActiveRecordMatchValues } from './global/utilities/activeRecords/IActiveRecordMatchValues'
-export { default as IActiveRecordSearchFilter } from './global/utilities/activeRecords/IActiveRecordSearchFilter'
-export { default as IQueryOptions } from './global/utilities/activeRecords/IQueryOptions'
-export { default as IQueryOptionsToBeUpdated } from './global/utilities/activeRecords/IQueryOptionsToBeUpdated'
+// global > lib > activeRecords
+export { default as IActiveRecordMatchValues } from './global/lib/activeRecords/IActiveRecordMatchValues'
+export { default as IActiveRecordSearchFilter } from './global/lib/activeRecords/IActiveRecordSearchFilter'
+export { default as IQueryOptions } from './global/lib/activeRecords/IQueryOptions'
+export { default as IQueryOptionsToBeUpdated } from './global/lib/activeRecords/IQueryOptionsToBeUpdated'
 
 /* ----------------------------------------------------------------------------------
  * Mongoose Model Interfaces

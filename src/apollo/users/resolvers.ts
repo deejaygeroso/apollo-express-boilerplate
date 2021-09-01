@@ -1,26 +1,19 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { IAuthenticatedUser, IUser, IUserCreateInput, IUserUpdateInput } from '../../interfaces'
-import { AuthService } from '../../services'
+import { AuthService } from '../../global/lib'
 import User from '../../mongoose/models/User'
 
 const resolvers = {
   Mutation: {
     userCreate: async (parent: undefined, { input }: { input: IUserCreateInput }): Promise<IUser> => {
-      const {
-        email,
-        password,
-        type,
-      } = input
+      const { email, password, type } = input
       const userModel = new User()
       const auth = new AuthService()
       const hashedPassword = await auth.hashPassword(password)
       return userModel.createIfNotExist({ email, hashedPassword, type })
     },
     userLogin: async (parent: undefined, { input }: { input: IUserCreateInput }): Promise<IAuthenticatedUser> => {
-      const {
-        email,
-        password,
-      } = input
+      const { email, password } = input
       const userModel = new User()
       const auth = new AuthService()
 
@@ -32,12 +25,7 @@ const resolvers = {
       return auth.authenticate(user, password)
     },
     userUpdate: async (parent: undefined, { input }: { input: IUserUpdateInput }): Promise<IUser> => {
-      const {
-        _id,
-        email,
-        password,
-        type,
-      } = input
+      const { _id, email, password, type } = input
       const userModel = new User()
       const auth = new AuthService()
       const hashedPassword = password ? await auth.hashPassword(password) : null

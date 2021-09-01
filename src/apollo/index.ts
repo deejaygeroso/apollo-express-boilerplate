@@ -1,5 +1,5 @@
 import { ApolloServer } from 'apollo-server-express'
-import { AuthService } from '../services'
+import { AuthService } from '../global/lib'
 import { Request } from 'express'
 import { processENV } from '../global/constants'
 import resolvers from './resolvers'
