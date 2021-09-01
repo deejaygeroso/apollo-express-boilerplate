@@ -143,6 +143,8 @@ adally-server
         - typescript
      - dist
      - node_modules
+     - public
+        - robots.txt
      - src
         - api
         - apollo
@@ -163,8 +165,8 @@ adally-server
             - models
             - schemas
         - services
-            - AuthService.ts
-        - server.ts
+        - Server.ts
+        - index.ts
     - .dockerignore
     - .env
     - .gitignore
@@ -198,14 +200,14 @@ Contains the project source code.
 
 | Directories | Definition                                                                           |
 | :---------- | :----------------------------------------------------------------------------------- |
-| api         | Contains all the api's logic that is used in `apiRoute.ts` file                      |
-| apollo      | Contains apollo configuration, mutation and queries.                                 |
-| global      | Contains global `variables, methods and reusable Class objects` used by the project. |
-| interfaces  | Contains application interfaces.                                                     |
-| mongoose    | Contains the scripts and configuration needed to use mongo database.                 |
-| services    | Contains the business logic of the application                                       |
-| apiRoute.ts | Contains all the api's of the application                                            |
-| server.ts   | Entry point of the application                                                       |
+| api         | Place where you store all your api routes and their corresponding logic              |
+| apollo      | Contains apollo configuration, mutation and queries                                  |
+| global      | Contains global and reusable `variables, functions and Class objects` used by the project  |
+| interfaces  | Contains application interfaces                                                      |
+| mongoose    | Contains mongo configuration, models and schemas needed to use mongo database        |
+| services    | This will be where main business logic of the application. You can consider this somehow like a Controller in a MVC architecture |
+| Server.ts   | Class that initializes our server                                                    |
+| index.ts    | Entry point of the application                                                       |
 
 ##### .dockerignore
 
@@ -253,7 +255,7 @@ Contains more information about the project.
 
 Release information about the project.
 
-##### robots.txt
+##### public/robots.txt
 
 Also known as the robots exclusion protocol or simply robots.txt,  
 is a standard used by websites to communicate with web crawlers and other web robots.
