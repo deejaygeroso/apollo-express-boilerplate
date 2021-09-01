@@ -57,7 +57,7 @@ class Server {
   private initRoutes = (): void => {
     this.app.use('/api', apiRoute)
     this.app.use('/robots.txt', (req: Request, res: Response): void => {
-      res.sendFile(path.join(__dirname + '/../robots.txt'))
+      res.sendFile(path.join(__dirname + '/../public/robots.txt'))
     })
     this.app.use('/', (req: Request, res: Response): void => {
       res.send(this.serverName)
