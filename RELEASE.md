@@ -1,3 +1,12 @@
+### v1.8.0 (July 2021)
+- Added .prettierrc config.
+- Added new glabal constant object for the list status codes.
+- Moved AuthService to globa/lib directory.
+- Refactored mongoose initialization.
+- Refactored Server class.
+- Removed some unused methods under global/functions directory.
+- Renamed global/utilities directory to global/lib.  
+
 ### v1.7.0 (July 2021)
 
 - Added readme and release documentation.
