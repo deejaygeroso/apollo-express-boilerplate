@@ -1,4 +1,3 @@
-
 import {
   IActiveRecordMatchValues,
   IActiveRecordSearchFilter,
@@ -11,13 +10,12 @@ import {
   ISingleDocModelOptionsInput,
 } from '../../interfaces'
 import Logger from './Logger'
-import mongoose from '../../mongoose/config/mongoose'
-
+import mongoose from 'mongoose'
 
 /* ----------------------------------------------------------------------------------
  * ActiveRecord class version 1.1.0
 /* ---------------------------------------------------------------------------------- */
-class ActiveRecord<TModel>{
+class ActiveRecord<TModel> {
   protected model: mongoose.Model<TModel>
 
   constructor(model: mongoose.Model<TModel>) {
@@ -26,25 +24,19 @@ class ActiveRecord<TModel>{
 
   protected create = async (filter: mongoose.FilterQuery<TModel>): Promise<TModel> => {
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
-      this.model.create(filter,
-        (error: mongoose.NativeError, doc: TModel): void => {
-          const errorMessageHeader = 'create'
-          this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
-          resolve(doc)
-        })
+      this.model.create(filter, (error: mongoose.NativeError, doc: TModel): void => {
+        const errorMessageHeader = 'create'
+        this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
+        resolve(doc)
+      })
     })
   }
 
   protected find = async (
     filter: mongoose.FilterQuery<TModel>,
-    options?: IQueryOptionsToBeUpdated
+    options?: IQueryOptionsToBeUpdated,
   ): Promise<TModel[]> => {
-    const {
-      limit,
-      select,
-      skip,
-      sort
-    }: IQueryOptions = this.getValidQueryOptions(options)
+    const { limit, select, skip, sort }: IQueryOptions = this.getValidQueryOptions(options)
 
     return new Promise((resolve: IResolve<TModel[]>, reject: IReject): void => {
       this.model
@@ -61,13 +53,11 @@ class ActiveRecord<TModel>{
     })
   }
 
-  protected findById = async (
-    modelId: string,
-    options?: ISingleDocModelOptionsInput
-  ): Promise<TModel> => {
+  protected findById = async (modelId: string, options?: ISingleDocModelOptionsInput): Promise<TModel> => {
     const { select }: ISingleDocModelOptions = this.getValidQueryOptionsForSingleDoc(options)
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
-      this.model.findById(modelId)
+      this.model
+        .findById(modelId)
         .select(select)
         .exec((error: mongoose.NativeError, doc: TModel): void => {
           const errorMessageHeader = `findById with id: ${modelId}`
@@ -79,14 +69,13 @@ class ActiveRecord<TModel>{
 
   protected findOne = async (
     filter: mongoose.FilterQuery<TModel>,
-    options?: IQueryOptionsToBeUpdated
+    options?: IQueryOptionsToBeUpdated,
   ): Promise<TModel> => {
     const queryOptions: IQueryOptions = this.getValidQueryOptions(options)
-    const {
-      select,
-    }: IQueryOptions = queryOptions
+    const { select }: IQueryOptions = queryOptions
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
-      this.model.findOne(filter)
+      this.model
+        .findOne(filter)
         .select(select)
         .exec((error: mongoose.NativeError, result: TModel): void => {
           const errorMessageHeader = 'findOne'
@@ -104,43 +93,40 @@ class ActiveRecord<TModel>{
     return this.update(condition, document)
   }
 
-  protected update = (
-    conditions: mongoose.FilterQuery<TModel>,
-    document: TModel,
-  ): Promise<TModel> => {
+  protected update = (conditions: mongoose.FilterQuery<TModel>, document: TModel): Promise<TModel> => {
     return new Promise((resolve: IResolve<TModel>, reject: IReject): void => {
       this.model.findOneAndUpdate(
         conditions,
         document,
         {
-          new: true
+          new: true,
         },
         (error: mongoose.NativeError, doc: TModel): void => {
           const errorMessageHeader = `update with filter: ${JSON.stringify(conditions, null, 4)}`
           this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
           resolve(doc)
-        }
+        },
       )
     })
   }
 
-  protected count = async (
-    filter: mongoose.FilterQuery<TModel>,
-  ): Promise<number> => {
+  protected count = async (filter: mongoose.FilterQuery<TModel>): Promise<number> => {
     return new Promise((resolve: IResolve<number>, reject: IReject): void => {
-      this.model
-        .countDocuments(filter || {})
-        .exec((error: mongoose.NativeError, count: number): void => {
-          if (error) {
-            const errorMessageHeader = 'count'
-            this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
-          }
-          resolve(count)
-        })
+      this.model.countDocuments(filter || {}).exec((error: mongoose.NativeError, count: number): void => {
+        if (error) {
+          const errorMessageHeader = 'count'
+          this.checkForErrorThenLogAndReject(error, reject, errorMessageHeader)
+        }
+        resolve(count)
+      })
     })
   }
 
-  protected checkForErrorThenLogAndReject = (error: mongoose.NativeError, reject: IReject, methodName: string): void => {
+  protected checkForErrorThenLogAndReject = (
+    error: mongoose.NativeError,
+    reject: IReject,
+    methodName: string,
+  ): void => {
     if (error) {
       Logger.logError(error, `Error on '${this.model.modelName}' class on method '${methodName}'`)
       reject(error)
@@ -154,14 +140,14 @@ class ActiveRecord<TModel>{
 
     return {
       [property]: {
-        $in: list
-      }
+        $in: list,
+      },
     }
   }
 
   protected generateSearchFilter = (property: string, value: string): IActiveRecordSearchFilter => {
     return {
-      [property]: { $regex: value, $options: 'i' }
+      [property]: { $regex: value, $options: 'i' },
     }
   }
 
@@ -171,7 +157,7 @@ class ActiveRecord<TModel>{
     }
 
     return {
-      select: options && options.select || null
+      select: (options && options.select) || null,
     }
   }
 
@@ -180,12 +166,7 @@ class ActiveRecord<TModel>{
       return {}
     }
 
-    const {
-      limit,
-      select,
-      skip,
-      sort,
-    } = options
+    const { limit, select, skip, sort } = options
 
     return {
       limit: limit || null,

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p config/typescript/tsconfig.json",
-    "dev": "ts-node --project config/typescript/tsconfig.json src/server.ts",
+    "dev": "ts-node --project config/typescript/tsconfig.json src/index.ts",
     "lint": "eslint -c config/eslint/.eslintrc.js --ext .ts src",
-    "start": "ts-node dist/server.js",
+    "start": "ts-node dist/index.js",
     "test": "jest"
   },
   "author": "",
