@@ -118,6 +118,22 @@ docker-compose up --build -d
 To test if your app can connect to your mongo db,  
 go to `http://localhost:3000/graphql`  
 then add this query:  
+
+Create New User:
+```
+mutation UserCreate {
+  userCreate(input: {
+		email: "email@gmail.com",
+    password: "password",
+		type: "admin",
+  }) {
+		_id
+		email
+	}
+}
+```
+
+Get All Users:
 ```
 {
   users {
@@ -127,6 +143,33 @@ then add this query:
   }
 }
 ```
+
+Update User (Note: _id must come from database):
+```
+mutation UserUpdate {
+  userUpdate(input: {
+  	_id: "60e98d73ab8bc50e1aa1d6a3",
+		email: "email2@gmail.com",
+    password: "password",
+		type: "user",
+  }) {
+		_id
+		email
+    type
+	}
+}
+```
+
+User account login:
+mutation UserLogin {
+  userLogin(input: {
+		email: "email@gmail.com",
+    password: "password",
+  }) {
+		_id
+		email
+	}
+}
 
 ---
 
