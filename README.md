@@ -120,13 +120,13 @@ Create New User:
 ```
 mutation UserCreate {
   userCreate(input: {
-		email: "email@gmail.com",
+    email: "email@gmail.com",
     password: "password",
-		type: "admin",
+    type: "admin",
   }) {
-		_id
-		email
-	}
+    _id
+    email
+  }
 }
 ```
 
@@ -145,27 +145,27 @@ Update User (Note: _id must come from database):
 ```
 mutation UserUpdate {
   userUpdate(input: {
-  	_id: "60e98d73ab8bc50e1aa1d6a3",
-		email: "email2@gmail.com",
+    _id: "60e98d73ab8bc50e1aa1d6a3",
+    email: "email2@gmail.com",
     password: "password",
-		type: "user",
+    type: "user",
   }) {
-		_id
-		email
+    _id
+    email
     type
-	}
+  }
 }
 ```
 
 User account login:
 mutation UserLogin {
   userLogin(input: {
-		email: "email@gmail.com",
+    email: "email@gmail.com",
     password: "password",
   }) {
-		_id
-		email
-	}
+    _id
+    email
+  }
 }
 
 ---
