@@ -1,4 +1,4 @@
-### v1.8.0 (July 2021)
+### v1.8.0 (Sept 1, 2021)
 - Added .prettierrc config.
 - Added new glabal constant object for the list status codes.
 - Moved AuthService to globa/lib directory.
