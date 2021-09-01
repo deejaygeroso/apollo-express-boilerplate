@@ -1,6 +1,7 @@
 ### v1.8.0 (Sept 1, 2021)
 - Added .prettierrc config.
 - Added new glabal constant object for the list status codes.
+- Added public directory and moved robots.txt within the directory.
 - Moved AuthService to globa/lib directory.
 - Refactored mongoose initialization.
 - Refactored Server class.
