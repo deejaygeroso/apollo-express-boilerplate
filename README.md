@@ -115,9 +115,6 @@ docker-compose up --build -d
 
 - `https://localhost:3000/graphql`  
   You can get more information for graphql playground [here](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/)  
-To test if your app can connect to your mongo db,  
-go to `http://localhost:3000/graphql`  
-then add this query:  
 
 Create New User:
 ```
